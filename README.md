@@ -162,7 +162,7 @@ The precharge state machine uses the isolated voltage measurements to check the 
 I’m developing SOC estimation using pack current and cell voltage measurements, with FRAM storage to preserve the estimate between power cycles.
 
 <p align="center">
-  <img src="assets/SCO%20estimation%20impelmentation.png" width="880" alt="SOC estimation implementation diagram">
+  <img src="assets/socestimate.png" width="880" alt="SOC estimation implementation diagram">
   <br>
   <em>Planned SOC estimation implementation.</em>
 </p>
