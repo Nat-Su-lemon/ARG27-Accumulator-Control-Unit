@@ -3,9 +3,9 @@
 An integrated precharge and battery-management control board for Cornell Racing’s electric race car.
 
 <p align="center">
-  <img src="assets2/ARG27%20ACU%20Rev1a-11topleveldiagram.png" width="880" alt="ACU system block diagram">
+  <img src="assets/acupcb3d.png" width="800" alt="ACU PCB 3D render">
   <br>
-  <em>ACU architecture and connections between monitoring, precharge, sensing, and vehicle interfaces.</em>
+  <em>3D render of the ARG27 Accumulator Control Unit.</em>
 </p>
 
 ## Overview
@@ -15,6 +15,12 @@ I’m designing the ARG27 Accumulator Control Unit (ACU), which combines the BMS
 The board uses a **Teensy 4.0** for control and an **ADBMS6822 isoSPI transceiver** to communicate with **ADBMS6830 cell monitors**. It also includes isolated voltage sensing, watchdog-based fault handling, CAN, FRAM for saving state-of-charge estimates, and SD card logging.
 
 The main design challenge is bringing these functions together while maintaining HV/LV isolation and defining how the system responds to faults or loss of control power.
+
+<p align="center">
+  <img src="assets2/ARG27%20ACU%20Rev1a-11topleveldiagram.png" width="880" alt="ACU system block diagram">
+  <br>
+  <em>ACU architecture and connections between monitoring, precharge, sensing, and vehicle interfaces.</em>
+</p>
 
 [Full schematic PDF](assets2/ARG27%20ACU%20Rev1a.pdf)
 
@@ -39,7 +45,6 @@ The firmware uses these measurements, along with cell temperatures, to check ope
 </p>
 
 [isoSPI isolation and filtering schematic](assets2/ARG27%20ACU%20Rev1aisospi.png)
-
 
 ### Fault Handling
 
@@ -97,12 +102,6 @@ CAN connects the ACU to the vehicle ECU. An SD card provides storage for measure
 
 The PCB combines the HV-referenced sensing and power circuitry with the LV control electronics. A major layout consideration is maintaining separation between these domains while routing the isolated power, sensing, and communication interfaces.
 
-<p align="center">
-  <img src="assets/acupcb3d.png" width="800" alt="ACU PCB 3D render">
-  <br>
-  <em>3D render of the ACU board.</em>
-</p>
-
 <table>
   <tr>
     <td align="center">
@@ -132,12 +131,12 @@ The firmware builds on Cornell Racing’s existing custom BMS code and the **LAM
 
 The main firmware responsibilities are:
 
-* Read and filter cell voltage and temperature measurements
-* Detect voltage, temperature, and open-wire faults
-* Control cell balancing during charging
-* Manage the precharge sequence
-* Send battery data over CAN and record it to the SD card
-* Assert the BMS fault output when a shutdown condition is detected
+- Read and filter cell voltage and temperature measurements
+- Detect voltage, temperature, and open-wire faults
+- Control cell balancing during charging
+- Manage the precharge sequence
+- Send battery data over CAN and record it to the SD card
+- Assert the BMS fault output when a shutdown condition is detected
 
 ### Firmware Architecture
 
@@ -173,21 +172,21 @@ Cornell Racing moved from an off-the-shelf BMS to a custom design in ARG25. The 
 
 For ARG27, I’m building on that work with the following priorities:
 
-* Verify CAN communication and core monitoring functionality
-* Add SOC estimation and persistent storage
-* Complete daisy-chain support and watchdog integration
-* Improve fault diagnostics and testing
-* Standardize configuration and code structure
-* Evaluate whether interrupt-driven scheduling or an RTOS would improve execution timing
+- Verify CAN communication and core monitoring functionality
+- Add SOC estimation and persistent storage
+- Complete daisy-chain support and watchdog integration
+- Improve fault diagnostics and testing
+- Standardize configuration and code structure
+- Evaluate whether interrupt-driven scheduling or an RTOS would improve execution timing
 
 ## Main Components
 
-| Function                           | Component                    |
-| ---------------------------------- | ---------------------------- |
-| Control MCU                        | Teensy 4.0 — NXP i.MX RT1062 |
-| isoSPI transceiver                 | Analog Devices ADBMS6822     |
-| Cell monitoring                    | Analog Devices ADBMS6830     |
-| Isolated precharge voltage sensing | SI8932D-IS4                  |
-| Persistent SOC storage             | FRAM                         |
-| Data logging                       | SD card                      |
-| Vehicle communication              | CAN                          |
+| Function | Component |
+| --- | --- |
+| Control MCU | Teensy 4.0 — NXP i.MX RT1062 |
+| isoSPI transceiver | Analog Devices ADBMS6822 |
+| Cell monitoring | Analog Devices ADBMS6830 |
+| Isolated precharge voltage sensing | SI8932D-IS4 |
+| Persistent SOC storage | FRAM |
+| Data logging | SD card |
+| Vehicle communication | CAN |
