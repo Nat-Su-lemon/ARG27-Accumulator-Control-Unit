@@ -142,7 +142,7 @@ The main firmware responsibilities are:
 ### Firmware Architecture
 
 <p align="center">
-  <img src="assets/Overall%20BMS%20firmware%20hiearchy.png" width="880" alt="BMS firmware architecture diagram">
+  <img src="assets/Overall%20BMS%20firmware%20hiearchy.png" width="550" alt="BMS firmware architecture diagram">
   <br>
   <em>Overall BMS firmware structure and module hierarchy.</em>
 </p>
@@ -162,7 +162,7 @@ The precharge state machine uses the isolated voltage measurements to check the 
 I’m developing SOC estimation using pack current and cell voltage measurements, with FRAM storage to preserve the estimate between power cycles.
 
 <p align="center">
-  <img src="assets/socestimate.png" width="880" alt="SOC estimation implementation diagram">
+  <img src="assets/socestimate.png" width="550" alt="SOC estimation implementation diagram">
   <br>
   <em>Planned SOC estimation implementation.</em>
 </p>
